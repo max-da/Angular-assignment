@@ -1,0 +1,11 @@
+<h1>Products!</h1>
+<app-category></app-category>
+<div>
+
+  <div  *ngFor="let m of movies " [routerLink]="['/products', m.id]">
+    <h2>{{ m.name }}</h2>
+    <img [src]="m.imageUrl"  [movie]="m" />
+    <h3>{{ m.price }}</h3>
+   
+  </div>
+</div>

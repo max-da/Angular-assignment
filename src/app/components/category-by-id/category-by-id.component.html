@@ -1,0 +1,19 @@
+<app-category></app-category>
+
+
+
+<div *ngFor="let m of movies">
+    <div *ngFor="let cat of m.productCategory">
+     
+        <div *ngIf="cat.categoryId == id" class="hej" [routerLink]="['/products', m.id]">
+       
+            {{m.name}}
+              <img [src]="m.imageUrl"  [movie]="m" />
+        </div>
+    </div>
+
+
+  </div>
+
+
+

@@ -1,0 +1,11 @@
+<button (click)="toggle()">Show shoppingcart</button>
+
+<div *ngIf="showCart">
+    <ul *ngFor="let s of shoppingList">
+        <li>
+            <span>{{s.name}}</span>
+            <button (click)="deleteFromCart(s.id)">delete </button>
+        </li>
+    </ul>
+
+</div>
