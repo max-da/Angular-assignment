@@ -1,0 +1,24 @@
+
+<button (click)="onClick()">aslndakjsdn</button>
+<div>
+    <ul>
+        <li *ngFor="let c of companyOrders">
+            
+           <span>Ordered by</span> {{c.createdBy}}: 
+           <span>Date</span>{{ c.created}}: 
+          
+            <span>id</span>{{c.id}}: 
+           <span>Ordered items</span> 
+           <ul>
+               <li *ngFor="let x of c.orderRows">
+                   {{x.productId}}
+               </li>
+           </ul>
+          
+           <span>Payment method</span> {{c.paymentMethod}}:
+           <span>Status</span>{{c.status}}:
+            <button (click)="deleteOrder(c.id)">Delete</button>
+        </li>
+    </ul>
+
+</div>

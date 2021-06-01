@@ -26,8 +26,9 @@ export class SpecificProductComponent implements OnInit {
     });
   }
   addToShoppingcart():void{
-   
+    this.movie.amount = 1;
     this.shoppingcartService.pushToCart(this.movie)
+   
     this.service.getLs();
   
   }

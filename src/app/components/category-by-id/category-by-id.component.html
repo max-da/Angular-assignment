@@ -3,14 +3,16 @@
 
 
 <div *ngFor="let m of movies">
-    <div *ngFor="let cat of m.productCategory">
+    <ul *ngFor="let cat of m.productCategory">
      
-        <div *ngIf="cat.categoryId == id" class="hej" [routerLink]="['/products', m.id]">
-       
-            {{m.name}}
+        <li *ngIf="cat.categoryId == id" [routerLink]="['/products', m.id]">
+          <div class="text-box">
+            <h2>{{m.name}}</h2><h3>{{m.price}}</h3>
+          </div>
+         
               <img [src]="m.imageUrl"  [movie]="m" />
-        </div>
-    </div>
+        </li>
+      </ul>
 
 
   </div>

@@ -1,0 +1,52 @@
+@import "/src/app/scss/import";
+
+button{
+    font-size: 1.5rem;
+    color: white;
+    background-color: transparent;
+    border: 0;
+    margin: 25px;
+    margin-left: 90px;
+}
+:host{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.cart-container{
+    animation: slideOut .3s;
+    background-color: #262626;
+    z-index: 5;
+    transform-origin: top;
+    top: 90px;
+    position: absolute;
+    width: 100%;
+    .cart-item{
+        display: flex;
+        align-items: center;
+       // border-bottom: 1px solid white;
+        box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.2);  
+        justify-content: space-around;
+    }
+}
+
+.length-count{
+    position: absolute;
+    right: 10px;
+    font-size: 1rem;
+    top: 10px;
+   color: $lightblue;
+ 
+}
+
+.checkout-box{
+    padding: 5px;
+    p,a{
+        margin: 5px;
+    }
+    a{
+        color: $lightblue;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+}

@@ -1,11 +1,21 @@
-<button (click)="toggle()">Show shoppingcart</button>
+<button class="fas fa-shopping-cart" (click)="toggle()"></button>
 
-<div *ngIf="showCart">
+<h2 *ngIf="!shoppingListEmpty" class="length-count">{{totalItems}}</h2>
+<div class="cart-container" *ngIf="showCart">
+   
+      <p *ngIf="shoppingListEmpty">Tomt jao</p> 
+
     <ul *ngFor="let s of shoppingList">
-        <li>
-            <span>{{s.name}}</span>
+        <li class="cart-item">
+            <h3>{{s.name}}</h3>
+            <span>{{s.price}}</span>
+            <span>{{s.amount}}</span>
             <button (click)="deleteFromCart(s.id)">delete </button>
         </li>
     </ul>
-
+    <div class="checkout-box" *ngIf="!shoppingListEmpty">
+    <a  [routerLink]="'checkout'">Proceed to checkout</a>
+    <p>Total: {{total}}</p>
+    </div>
 </div>
+

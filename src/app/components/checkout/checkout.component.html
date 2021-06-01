@@ -1,0 +1,32 @@
+
+<div class="banner">
+    <h2>Checkout</h2>
+</div>
+<div class="item-list">
+    <ul>
+        <li *ngFor="let s of shoppingList">
+           <span>{{s.name}}</span> 
+           <img  [src]="s.imageUrl"/>
+        </li>
+    </ul>
+</div>
+<div *ngIf="shoppingList.length != 0">
+
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Firstname" formControlName="firstName">
+    <input type="text" placeholder="Lastnmae" formControlName="lastName">
+    <input list="paymentMethod" type="text" placeholder="Select Payment" formControlName="paymentMethod">
+    <datalist id="paymentMethod">
+        <option>Mastercard</option>
+        <option>Paypal</option>
+        <option>BTC</option>
+    </datalist>
+    <button [disabled]="customerForm.invalid" type="submit">submit</button >
+</form>
+
+</div>
+<div *ngIf="shoppingList.length == 0">
+    <p>Your shoppingcart seems to be empty, return to
+        <a [routerLink]="'/products'">products</a>
+    </p>
+</div>

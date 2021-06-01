@@ -11,8 +11,8 @@ export class SearchFilterPipe implements PipeTransform {
    
     if (!searchText ||searchText == " ") return []
     searchText = searchText.toLocaleLowerCase();
-    this.filteredMovies = movies.filter(it => {
-      return it.name.toLocaleLowerCase().includes(searchText);
+    this.filteredMovies = movies.filter(e => {
+      return e.name.toLocaleLowerCase().includes(searchText);
     });
 
    if (this.filteredMovies.length > 5 ){

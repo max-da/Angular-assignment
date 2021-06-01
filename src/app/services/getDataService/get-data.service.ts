@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject , of} from 'rxjs';
 import { Category } from 'src/app/models/categoryModel';
 import { Movie } from 'src/app/models/models';
+import { Order } from 'src/app/models/orderModel';
 
 
 @Injectable({
@@ -10,15 +11,15 @@ import { Movie } from 'src/app/models/models';
 })
 export class GetDataService {
   constructor(private http: HttpClient) {}
-  
+
   private movies = new Subject<Movie[]>();
   movies$ = this.movies.asObservable();
   private shoppingList = new Subject<Movie[]>();
   shoppingList$ = this.shoppingList.asObservable();
   private categories = new Subject<Category[]>();
   categories$ = this.categories.asObservable();
-  private searchTerm = new Subject<string>();
-  searchTerm$ = this.searchTerm.asObservable();
+  private companyOrders = new Subject<Order[]>();
+  $companyOrders = this.companyOrders.asObservable();
 
   getData(): void {
     if (!localStorage.getItem('movies')) {
@@ -43,6 +44,7 @@ export class GetDataService {
 
   getLs(){
     this.shoppingList.next(JSON.parse(localStorage.getItem("shoppingList")))
+  
   }
 
   getCategory(){
@@ -62,7 +64,43 @@ export class GetDataService {
 
 }
 
-  handleSearchTerm():any{
-      return  of (this.searchTerm$)
-  }
+
+  //Här är det inte särskilt logiskt att använda LS, då denna behöver uppdateras kontenuerligt
+  //hur som helst gjorde jag såhär för att inte belasta apin med massa anrop onödigt
+  getCompanyOrders(){
+/*     if (!localStorage.getItem('companyOrders') || localStorage.getItem("companyOrders").length == 0) {
+      this.http
+        .get<Order[]>(
+          "https://medieinstitutet-wie-products.azurewebsites.net/api/orders/?companyId=298174"
+                  )
+        .subscribe((data: Order[]) => {
+          this.companyOrders.next(data);
+          localStorage.setItem('companyOrders', JSON.stringify(data));
+        });
+    } else {
+       this.companyOrders.next(JSON.parse(localStorage.getItem('companyOrders')));
+    } */
+    this.http
+    .get<Order[]>(
+      "https://medieinstitutet-wie-products.azurewebsites.net/api/orders/?companyId=298174"
+              )
+    .subscribe((data: Order[]) => {
+      this.companyOrders.next(data);
+    });
+
 }
+  deleteCompanyOrder(id:number){
+/*     let companyOrders = JSON.parse(localStorage.getItem('companyOrders'))
+    let index = companyOrders.findIndex((e)=> e.id == id)
+    console.log(index)
+    companyOrders.splice(index,1)
+    localStorage.setItem('companyOrders', JSON.stringify(companyOrders));
+ */
+ let url = "https://medieinstitutet-wie-products.azurewebsites.net/api/orders/" + id
+    return this.http.delete(url).subscribe((data)=> {
+      console.log(data)
+    }) 
+  }
+
+}
+

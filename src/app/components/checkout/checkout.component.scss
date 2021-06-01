@@ -1,0 +1,31 @@
+@import "/src/app/scss/import";
+.banner{
+    background-color: #262626;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+    position: relative;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2{
+        font-size: 1.4rem;
+    }
+}
+
+.item-list{
+    ul{
+     
+        li{
+            display: flex;
+            height: auto;
+            flex-direction: column;
+            background-color: white;
+            img{
+                height: auto;
+                width: 50%;
+            }
+        }
+    }
+}

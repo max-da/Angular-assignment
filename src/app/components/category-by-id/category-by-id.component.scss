@@ -1,7 +1,30 @@
 img{
-    height: 300px;
-    width: auto;
+    width: 100%;
 }
-.hej{
-    border: 5px solid red;
+ul{
+    display: flex;
+    flex-direction: column;
+    li{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    
+        margin-bottom: 15px;
+        border-bottom: lightgrey 1px solid;
+    
+        .text-box{
+            display: flex;
+            align-items:center;
+            justify-content: flex-start;
+            width: 100%;
+            h3{
+                margin-left: 1px;
+                margin-bottom: 15px;
+                color: black;
+                background-color: white;
+                border-radius: 5px;
+                padding: 1px;
+            }
+        }
+    }
 }
