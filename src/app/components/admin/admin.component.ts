@@ -9,7 +9,7 @@ import { GetDataService } from 'src/app/services/getDataService/get-data.service
 })
 export class AdminComponent implements OnInit {
   constructor(private service: GetDataService) {}
-
+  /* Lyssnar efter companyorders */
   companyOrders: Order[] = [];
   ngOnInit(): void {
     this.service.$companyOrders.subscribe((data) => {
@@ -17,7 +17,7 @@ export class AdminComponent implements OnInit {
     });
     this.service.getCompanyOrders();
   }
-
+  /* Lyssnar på anropet från delete, när det är klart lysnar den efter förändringen i companyorders */
   deleteOrder(id: number) {
     this.service.deleteCompanyOrder(id).subscribe(() => {
       this.service.$companyOrders.subscribe((orders) => {

@@ -15,7 +15,7 @@ import { ShoppingcartService } from 'src/app/services/shoppingcartService/shoppi
 })
 export class CheckoutComponent implements OnInit {
   shoppingList: Movie[] = [];
-  
+
   total: number;
 
   constructor(
@@ -49,6 +49,9 @@ export class CheckoutComponent implements OnInit {
   get paymentMethod() {
     return this.customerForm.get('paymentMethod');
   }
+
+
+  /* Skapar order objekt med användaruppgifter och orderrows, skickar via service till api och rediercatar */
   onSubmit() {
 
     let date = new Date();

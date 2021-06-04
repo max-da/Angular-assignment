@@ -23,7 +23,7 @@ export class GetDataService {
   private moviesByCat = new Subject<Movie[]>();
   $moviesByCat = this.moviesByCat.asObservable();
 
-
+  /* Hämtar samtliga movies från api */
   getData(): void {
     if (!localStorage.getItem('movies')) {
       this.http
@@ -38,7 +38,7 @@ export class GetDataService {
       this.movies.next(JSON.parse(localStorage.getItem('movies')));
     }
   }
-
+  /* Filtrear movies via id som kommer från param */
   getMovieId(movieId: number): Movie {
     let movies: Movie[] = JSON.parse(localStorage.getItem('movies'));
     return movies.filter((movie) => movie.id == movieId)[0];
@@ -49,7 +49,7 @@ export class GetDataService {
     this.shoppingList.next(JSON.parse(localStorage.getItem("shoppingList")))
   
   }
-
+  /* Hämtar categorys från api */
   getCategory(){
     if (!localStorage.getItem('categories')) {
       this.http
@@ -67,7 +67,7 @@ export class GetDataService {
 
 }
 
-
+  /* Hämtar orders via companyid */
   getCompanyOrders(){
  return this.http
     .get<Order[]>(
@@ -78,16 +78,15 @@ export class GetDataService {
     });
 
 }
+  /* Tar bort order med id  */
   deleteCompanyOrder(id:number){
 
  let url = "https://medieinstitutet-wie-products.azurewebsites.net/api/orders/" + id
-  return this.http.delete(url)/* .subscribe((data)=> {
-     
-   
-    })   */
+  return this.http.delete(url)
 
   }
-
+  /* Loopar igenom listan med filmer, och loopar i sin tur varje movies categorylista och kollar om det angivna idt (från url) finns med där
+  Om den gör det pushas den till ny lista */
   getMoviesByCat(movies:Movie[], id:number):any{
     
     let moviesByCat:Movie[] = []

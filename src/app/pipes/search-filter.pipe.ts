@@ -8,7 +8,8 @@ export class SearchFilterPipe implements PipeTransform {
   filteredMovies:Movie[]
   transform(movies: Movie[], searchText:string):Movie[]  {
    
-   
+   /* Filtrear movies efter inkluderade bokstäver i searchtext 
+   begränsar också resultatet till 5*/
     if (!searchText ||searchText == " " ) return []
     searchText = searchText.toLocaleLowerCase();
     this.filteredMovies = movies.filter(e => {

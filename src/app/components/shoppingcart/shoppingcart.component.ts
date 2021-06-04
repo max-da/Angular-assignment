@@ -49,9 +49,9 @@ export class ShoppingcartComponent implements OnInit {
   
     
   ) {}
-
+/* Lyssnar efter shoppinglist data, kollar också att shoppinglist finns ifall den behöver visa varukorg-tomt meddelande */
   ngOnInit(): void {
-    
+      
     this.dataService.shoppingList$.subscribe((data: Movie[]) => {
       this.shoppingList = data;
       this.calculateTotal()

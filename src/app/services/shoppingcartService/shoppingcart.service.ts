@@ -16,7 +16,10 @@ export class ShoppingcartService {
   pushToCart(myProduct: Movie): void {
 
   this.movie = myProduct;
-
+    /* Om shoppinglist inte existerar skapas den och produkt läggs till i både orderrows och shoppinglist
+    Om shoppinglist & OR existerar killar vi efter id, finns den redan läggs en till på dennes amount,
+    annars läggs den till i listan
+    Delete, increment och decrement fungerar på samma sätt */
   if (!localStorage.getItem('shoppingList')) {
     let shoppingList: Movie[] = [];
     let orderRows: orderRow[] = [];
@@ -107,7 +110,7 @@ export class ShoppingcartService {
   
   
   }
-
+  
   calculateTotal(shoppingList:Movie[]):[number,number]{
     let total = 0;
     let totalItems = 0;
