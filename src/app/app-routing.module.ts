@@ -6,6 +6,7 @@ import { CategoryComponent } from './components/category/category.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { ProductsComponent } from './components/products/products.component';
 import { SearchComponent } from './components/search/search.component';
 import { SpecificProductComponent } from './components/specific-product/specific-product.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:"category/:id", component:CategoryByIdComponent},
   {path:"checkout", component:CheckoutComponent},
   {path:"admin", component:AdminComponent},
+  {path:"orderSuccess", component:OrderSuccessComponent},
   {path:"**", component:NotFoundComponent}
 ];
 

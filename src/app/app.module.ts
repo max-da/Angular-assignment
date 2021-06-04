@@ -17,13 +17,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AdminComponent } from './components/admin/admin.component';
-
+import { OrderSuccessComponent } from './components/order-success/order-success.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
     CategoryByIdComponent,
- 
+
     NavigationComponent,
     NotFoundComponent,
     ProductsComponent,
@@ -32,12 +33,15 @@ import { AdminComponent } from './components/admin/admin.component';
     SpecificProductComponent,
     SearchFilterPipe,
     CheckoutComponent,
-    AdminComponent
+    AdminComponent,
+    OrderSuccessComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+
     FormsModule,
     ReactiveFormsModule
   ],

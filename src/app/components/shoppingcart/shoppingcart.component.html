@@ -1,21 +1,29 @@
-<button class="fas fa-shopping-cart" (click)="toggle()"></button>
+<button class="fas fa-shopping-cart cart-button" (click)="toggle()"></button>
 
-<h2 *ngIf="!shoppingListEmpty" class="length-count">{{totalItems}}</h2>
-<div class="cart-container" *ngIf="showCart">
-   
-      <p *ngIf="shoppingListEmpty">Tomt jao</p> 
+<h2 *ngIf="!shoppingListEmpty && totalItems != 0" class="length-count">
+  {{ totalItems }}
+</h2>
+<div class="cart-container" [@openClose]="showCart ? 'open' : 'closed'">
+  <h2 id="empty-message" *ngIf="shoppingListEmpty">
+    Your shoppingcart seems to be empty...
+  </h2>
 
-    <ul *ngFor="let s of shoppingList">
-        <li class="cart-item">
-            <h3>{{s.name}}</h3>
-            <span>{{s.price}}</span>
-            <span>{{s.amount}}</span>
-            <button (click)="deleteFromCart(s.id)">delete </button>
-        </li>
-    </ul>
-    <div class="checkout-box" *ngIf="!shoppingListEmpty">
-    <a  [routerLink]="'checkout'">Proceed to checkout</a>
-    <p>Total: {{total}}</p>
-    </div>
+  <ul>
+    <li *ngFor="let s of shoppingList" class="cart-item">
+      <div class="name-box">
+        <h3>{{ s.name }}</h3>
+      </div>
+      <div class="button-box">
+        <span>{{ s.price }} :-</span>
+        <span>{{ s.amount }}</span>
+        <button class="fas fa-plus" (click)="incrementCart(s.id)"></button>
+        <button class="fas fa-minus" (click)="decrementCart(s.id)"></button>
+        <button class="fas fa-trash" (click)="deleteFromCart(s.id)"></button>
+      </div>
+    </li>
+  </ul>
+  <div class="checkout-box" *ngIf="!shoppingListEmpty">
+    <a (click)="hideCart()" [routerLink]="'checkout'">Proceed to checkout</a>
+    <p>Total: {{ total }}</p>
+  </div>
 </div>
-

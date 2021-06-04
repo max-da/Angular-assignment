@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ShoppingcartComponent } from './shoppingcart.component';
 
@@ -8,7 +10,8 @@ describe('ShoppingcartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShoppingcartComponent ]
+      declarations: [ ShoppingcartComponent ],
+      imports:[HttpClientTestingModule,BrowserAnimationsModule]
     })
     .compileComponents();
   });
@@ -22,4 +25,11 @@ describe('ShoppingcartComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("should toggle correctly", ()=> {
+    expect(component.showCart).toBeFalse()
+    component.toggle()
+    expect(component.showCart).toBeTrue()
+  })
+ 
 });

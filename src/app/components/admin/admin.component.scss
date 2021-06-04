@@ -1,12 +1,37 @@
-ul{
-    display: flex;
-    flex-direction: column;
-    li{
-        span{
-            color: white;
-        }
-    }
+@import "/src/app/scss/import";
+
+.banner {
+  height: 50px;
+  background-color: $dark-grey;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-size: 1.4rem;
+  }
 }
-div{
-    background-color: white;
+li {
+  margin: 5px 0 5px 0;
+  list-style-type: none;
+}
+.admin-container {
+  background-color: $dark-grey;
+  .main-list {
+    .indv-order {
+      padding: 5px;
+      margin: 5px;
+      border-bottom: white solid 1px;
+    }
+  }
+}
+* {
+  color: white;
+}
+button {
+  color: black;
+  font-size: 1.4rem;
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
 }

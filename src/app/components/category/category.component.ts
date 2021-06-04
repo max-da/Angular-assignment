@@ -7,26 +7,16 @@ import { GetDataService } from 'src/app/services/getDataService/get-data.service
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
-
-  constructor(
-    private service:GetDataService,
-   
-  
-  ) { }
-  categories:Category[] = [];
+  constructor(private service: GetDataService) {}
+  categories: Category[] = [];
 
   ngOnInit(): void {
-    this.service.categories$.subscribe((data:Category[])=>{
+    this.service.categories$.subscribe((data: Category[]) => {
       this.categories = data;
-
-    })
-   this.service.getCategory();  
-
-
+    });
+    this.service.getCategory();
   }
-
-  
 }

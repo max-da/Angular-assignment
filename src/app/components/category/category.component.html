@@ -1,7 +1,11 @@
-<div>
-    <ul>
-        <li *ngFor="let c of categories" [routerLink]="['/category', c.id]">
-            <h2  routerLinkActive="active">{{c.name}}</h2>
-        </li>
-    </ul>
+<div class="container">
+  <ul class="cat-list">
+    <li
+      class="cat-item"
+      *ngFor="let c of categories"
+      [routerLink]="['/category', c.id]"
+    >
+      <h2 routerLinkActive="active">{{ c.name }}</h2>
+    </li>
+  </ul>
 </div>

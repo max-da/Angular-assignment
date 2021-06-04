@@ -1,32 +1,76 @@
-
 <div class="banner">
-    <h2>Checkout</h2>
+  <h2>Checkout</h2>
 </div>
-<div class="item-list">
-    <ul>
+<div class="container">
+  <div class="wrapper">
+    <div class="item-list">
+      <ul>
         <li *ngFor="let s of shoppingList">
-           <span>{{s.name}}</span> 
-           <img  [src]="s.imageUrl"/>
+          <img [src]="s.imageUrl" />
+          <div class="text-div">
+            <h3>{{ s.name }}</h3>
+            <h4>{{ s.price }}:-</h4>
+            <h4>Qty: {{ s.amount }}</h4>
+
+            <div class="button-div">
+              <button
+                class="fas fa-plus"
+                (click)="incrementCart(s.id)"
+              ></button>
+              <button
+                class="fas fa-minus"
+                (click)="decrementCart(s.id)"
+              ></button>
+              <button
+                class="fas fa-trash"
+                (click)="deleteFromCart(s.id)"
+              ></button>
+            </div>
+            <h4>Price: {{ s.totalPerMovie }}</h4>
+          </div>
         </li>
-    </ul>
-</div>
-<div *ngIf="shoppingList.length != 0">
+      </ul>
+    </div>
+    <div class="banner-2">
+      <h1>Payment details</h1>
+    </div>
+    <div class="form-container" *ngIf="shoppingList.length != 0">
+      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+        <input
+          type="text"
+          placeholder="Firstname"
+          formControlName="firstName"
+          required
+        />
+        <input type="text" placeholder="Lastnmae" formControlName="lastName" />
 
-<form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
-    <input type="text" placeholder="Firstname" formControlName="firstName">
-    <input type="text" placeholder="Lastnmae" formControlName="lastName">
-    <input list="paymentMethod" type="text" placeholder="Select Payment" formControlName="paymentMethod">
-    <datalist id="paymentMethod">
-        <option>Mastercard</option>
-        <option>Paypal</option>
-        <option>BTC</option>
-    </datalist>
-    <button [disabled]="customerForm.invalid" type="submit">submit</button >
-</form>
+        <select id="paymentMethod" formControlName="paymentMethod">
+          <option>Mastercard</option>
+          <option>Paypal</option>
+          <option>BTC</option>
+          <option value="" disabled>Please select payment</option>
+        </select>
 
-</div>
-<div *ngIf="shoppingList.length == 0">
-    <p>Your shoppingcart seems to be empty, return to
+        <button [disabled]="customerForm.invalid" type="submit">
+          SEND ORDER
+        </button>
+        <div class="error-div">
+          <h4 *ngIf="firstName.errors?.minlength">First name is too short</h4>
+          <h4 *ngIf="firstName.errors?.required && firstName.dirty">
+            First name is required
+          </h4>
+          <h4 *ngIf="lastName.errors?.minlength">Last name is too short</h4>
+          <h4 *ngIf="lastName.errors?.required && lastName.dirty">
+            Last name is required
+          </h4>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="shoppingList.length == 0">
+      <p>
+        Your shoppingcart seems to be empty, return to
         <a [routerLink]="'/products'">products</a>
-    </p>
+      </p>
+    </div>
+  </div>
 </div>

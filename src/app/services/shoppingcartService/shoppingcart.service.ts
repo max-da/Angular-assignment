@@ -33,8 +33,10 @@ export class ShoppingcartService {
     this.orderRows = JSON.parse(localStorage.getItem("orderRows"))
     let indexO = this.orderRows.findIndex((e)=> e.productId == this.movie.id)
     let index = this.shoppingList.findIndex((e)=> e.id == this.movie.id);
+    
     if (index != -1){
       this.shoppingList[index].amount++
+      this.shoppingList[index].totalPerMovie = this.shoppingList[index].amount * this.shoppingList[index].price
       this.orderRows[indexO].amount++
     }
     else{
@@ -49,33 +51,74 @@ export class ShoppingcartService {
   }
 
   }
+
+
+
   deleteFromCart(id:number):void{
 
     this.shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
     let indexO = this.orderRows.findIndex((e)=> e.productId == id)
     this.orderRows = JSON.parse(localStorage.getItem("orderRows"))
     let index = this.shoppingList.findIndex((e)=>e.id == id)
-    if (this.shoppingList[index].amount != 1){
-      this.shoppingList[index].amount--
-      this.orderRows[indexO].amount--
-    }
-    else{
+
       this.shoppingList.splice(index, 1)
       this.orderRows.splice(indexO, 1)
-    }
+  
     localStorage.setItem("orderRows", JSON.stringify(this.orderRows))
     localStorage.setItem('shoppingList', JSON.stringify(this.shoppingList));
 
   }
+
+  decrementCart(id:number):void{
+    this.orderRows = JSON.parse(localStorage.getItem("orderRows"))
+    this.shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
+    let indexO = this.orderRows.findIndex((e)=> e.productId == id)
+  
+    let index = this.shoppingList.findIndex((e)=>e.id == id)
+    console.log(index)
+    if (this.shoppingList[index].amount == 1){
+      this.shoppingList.splice(index, 1)
+      this.orderRows.splice(indexO, 1)
+    }
+    else{
+      this.shoppingList[index].amount--
+      this.orderRows[indexO].amount--
+    }
+     
+
+      localStorage.setItem("orderRows", JSON.stringify(this.orderRows))
+      localStorage.setItem('shoppingList', JSON.stringify(this.shoppingList));
+  
+  
+  }
+
+  incrementCart(id:number):void{
+    this.orderRows = JSON.parse(localStorage.getItem("orderRows"))
+    this.shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
+    let indexO = this.orderRows.findIndex((e)=> e.productId == id)
+   
+    let index = this.shoppingList.findIndex((e)=>e.id == id)
+
+      this.shoppingList[index].amount++
+      this.orderRows[indexO].amount++
+
+      localStorage.setItem("orderRows", JSON.stringify(this.orderRows))
+      localStorage.setItem('shoppingList', JSON.stringify(this.shoppingList));
+  
+  
+  }
+
   calculateTotal(shoppingList:Movie[]):[number,number]{
     let total = 0;
     let totalItems = 0;
-    for (let i = 0; i < shoppingList.length; i++){
   
+    for (let i = 0; i < shoppingList.length; i++){
+      
       let index = shoppingList[i]
       let movieTotal = index.amount * index.price;
+     
       total = total + movieTotal;
-      console.log(total)
+    
       totalItems += index.amount
   
   
@@ -90,48 +133,3 @@ export class ShoppingcartService {
 }
 
 
-
-    /* this.movie = myProduct
-    if (!localStorage.getItem('shoppingList')) {
-      let shoppingList: Movie[] = [];
-      shoppingList.push(myProduct);
-      localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-    } else {
-      this.shoppingList = JSON.parse(localStorage.getItem('shoppingList'));
-      this.shoppingList.push(myProduct);
-      localStorage.setItem('shoppingList', JSON.stringify(this.shoppingList));
-    }
-
-    if (!localStorage.getItem("orderRows") ){
-     let orderRows: orderRow[] = [];
-      orderRows.push(new orderRow(
-        myProduct.id,
-        //myProduct.name,
-        1,
-      
-
-      )
-      )
-      localStorage.setItem("orderRows", JSON.stringify(orderRows))
-    }
-    else{
-      let orderRows = JSON.parse(localStorage.getItem("orderRows"))
-
-    
-     let oIndex = orderRows.findIndex((e)=> e.productId == myProduct.id)
-     if (oIndex != -1){
-      orderRows[oIndex].amount++
-      localStorage.setItem("orderRows",JSON.stringify(orderRows))
-     }
-     else{
-       orderRows.push(new orderRow(
-         myProduct.id,
-         //myProduct.name,
-         1,
-        
-       ))
-       localStorage.setItem("orderRows",JSON.stringify(orderRows))
-     }
- 
-   
-  } */

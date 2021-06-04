@@ -1,24 +1,26 @@
+<div class="banner">
+  <h1>Database Orders</h1>
+</div>
+<div class="admin-container">
+  <ul class="main-list">
+    <li *ngFor="let c of companyOrders" class="indv-order">
+      <ul>
+        <h2>Order <span>ID: </span>{{ c.id }}</h2>
+        <li><span>Ordered by:</span> {{ c.createdBy }}</li>
+        <li><span>Date: </span>{{ c.created }}</li>
+      </ul>
 
-<button (click)="onClick()">aslndakjsdn</button>
-<div>
-    <ul>
-        <li *ngFor="let c of companyOrders">
-            
-           <span>Ordered by</span> {{c.createdBy}}: 
-           <span>Date</span>{{ c.created}}: 
-          
-            <span>id</span>{{c.id}}: 
-           <span>Ordered items</span> 
-           <ul>
-               <li *ngFor="let x of c.orderRows">
-                   {{x.productId}}
-               </li>
-           </ul>
-          
-           <span>Payment method</span> {{c.paymentMethod}}:
-           <span>Status</span>{{c.status}}:
-            <button (click)="deleteOrder(c.id)">Delete</button>
+      <h3>Ordered items</h3>
+      <ul>
+        <li *ngFor="let x of c.orderRows">
+          ID: {{ x.productId }} AMOUNT: {{ x.amount }}
         </li>
-    </ul>
-
+      </ul>
+      <ul>
+        <li><span>Payment method: </span> {{ c.paymentMethod }}</li>
+        <li><span>Status: </span>{{ c.status }}</li>
+        <button (click)="deleteOrder(c.id)">Delete order from Database</button>
+      </ul>
+    </li>
+  </ul>
 </div>

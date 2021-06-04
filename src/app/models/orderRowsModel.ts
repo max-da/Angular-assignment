@@ -1,14 +1,9 @@
-export class orderRow{
-    productId: number
-    //product:string
-    amount:number
+export class orderRow {
+  productId: number;
 
-    constructor(productId:number,amount:number, ){
-        this.productId = productId,
-       /// this.product = product,
-        this.amount = amount
-   
-    }
+  amount: number;
+
+  constructor(productId: number, amount: number) {
+    (this.productId = productId), (this.amount = amount);
+  }
 }
-
-//{productId:number,product:string,amount:number}

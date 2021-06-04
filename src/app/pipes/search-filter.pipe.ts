@@ -9,7 +9,7 @@ export class SearchFilterPipe implements PipeTransform {
   transform(movies: Movie[], searchText:string):Movie[]  {
    
    
-    if (!searchText ||searchText == " ") return []
+    if (!searchText ||searchText == " " ) return []
     searchText = searchText.toLocaleLowerCase();
     this.filteredMovies = movies.filter(e => {
       return e.name.toLocaleLowerCase().includes(searchText);

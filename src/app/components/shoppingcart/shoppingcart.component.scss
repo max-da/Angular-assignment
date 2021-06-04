@@ -1,12 +1,17 @@
 @import "/src/app/scss/import";
 
-button{
+.cart-button{
     font-size: 1.5rem;
     color: white;
     background-color: transparent;
     border: 0;
-    margin: 25px;
-    margin-left: 90px;
+    margin-right: 40px;
+    margin-left: 40px;
+    
+    @include tablets-up{
+        font-size: 2rem;
+      
+    }
 }
 :host{
     display: flex;
@@ -14,28 +19,63 @@ button{
     
 }
 .cart-container{
-    animation: slideOut .3s;
+  
     background-color: #262626;
     z-index: 5;
     transform-origin: top;
     top: 90px;
     position: absolute;
     width: 100%;
-    .cart-item{
-        display: flex;
-        align-items: center;
-       // border-bottom: 1px solid white;
-        box-shadow: 0px 0px 0px 3px rgba(0,0,0,0.2);  
-        justify-content: space-around;
+    @include tablets-up{
+        top:120px;
+        width: 40%;
+        max-width: 400px;
+        border: 1px solid black;
     }
+    #empty-message{
+      text-align: center;
+      padding: 10px 0 10px 0;
+    }
+    ul{
+      
+        .cart-item{
+            display: flex;
+            width: 100%;
+            align-items: center;
+           // border-bottom: 1px solid white;
+    
+            box-shadow: 0px 3px 0px 1px rgba(0,0,0,0.2);  
+            justify-content: space-between;
+            .name-box{
+                margin-left: 5px;
+                width: 50%;
+                padding: 10px 0 10px 0;
+            }
+            .button-box{
+                display: flex;
+                justify-content: space-around;
+                width: 50%;
+                align-items: center;
+                button{
+                    font-size: 1rem;
+                    background-color: transparent;
+                    color: $lightblue;
+                    border: 0;
+                }
+
+            }
+            
+        }
+    }
+  
 }
 
 .length-count{
     position: absolute;
-    right: 10px;
+    right: 25px;
     font-size: 1rem;
-    top: 10px;
-   color: $lightblue;
+    top: 25px;
+    color: $lightblue;
  
 }
 

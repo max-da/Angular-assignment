@@ -5,28 +5,27 @@ import { GetDataService } from 'src/app/services/getDataService/get-data.service
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
+  constructor(private service: GetDataService) {}
 
-  constructor(
-   
-    private service:GetDataService
-  ) { }
-  
-  companyOrders:Order[] = []
+  companyOrders: Order[] = [];
   ngOnInit(): void {
- 
-  }
-  onClick(){
-    this.service.$companyOrders.subscribe((data)=>{
+    this.service.$companyOrders.subscribe((data) => {
       this.companyOrders = data;
-     })
-     this.service.getCompanyOrders()
+    });
+    this.service.getCompanyOrders();
   }
-  deleteOrder(id:number){
 
-    this.service.deleteCompanyOrder(id)
-    this.service.getCompanyOrders()
+  deleteOrder(id: number) {
+    this.service.deleteCompanyOrder(id).subscribe(() => {
+      this.service.$companyOrders.subscribe((orders) => {
+        this.companyOrders = orders;
+      });
+      this.service.getCompanyOrders();
+    });
+
+ 
   }
 }

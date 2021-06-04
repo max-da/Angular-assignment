@@ -1,0 +1,31 @@
+@import "/src/app/scss/import";
+.banner{
+    height: 50px;
+    background-color: $dark-grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+.message-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    flex-wrap: wrap;
+    text-align: start;
+    margin-top: 5px;
+    a,h3,h4{
+        margin-top: 5px;
+    }
+    a{
+        color: $lightblue;
+    }
+}
+
+}

@@ -1,12 +1,16 @@
-<div>
-    <div>
-        <h1>{{movie.name}}</h1>
+<div class="container">
+  <div class="movie-container" *ngIf="movie">
+    <div class="cover">
+      <h1>{{ movie.name }}</h1>
+      <h3>{{ movie.price }}:-</h3>
     </div>
-   
-    <img  [src]="movie.imageUrl">
+    <div></div>
+
+    <img [src]="movie.imageUrl" />
     <div class="span-div">
-        <span>{{movie.description}}</span>
+      <span>{{ movie.description }}</span>
     </div>
- 
-    <button (click)="addToShoppingcart()"> Add to shoppingcart</button>
+
+    <button (click)="addToShoppingcart()">Add to shoppingcart</button>
+  </div>
 </div>

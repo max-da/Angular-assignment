@@ -11,12 +11,13 @@ import { ShoppingcartService } from 'src/app/services/shoppingcartService/shoppi
   styleUrls: ['./specific-product.component.scss'],
 })
 export class SpecificProductComponent implements OnInit {
-  constructor(private service: GetDataService,
-              private shoppingcartService:ShoppingcartService,
-              private route: ActivatedRoute) {}
- movie: Movie;
+  constructor(
+    private service: GetDataService,
+    private shoppingcartService: ShoppingcartService,
+    private route: ActivatedRoute
+  ) {}
+  movie: Movie;
   id: number = 0;
-
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -25,11 +26,11 @@ export class SpecificProductComponent implements OnInit {
       this.movie = this.service.getMovieId(this.id);
     });
   }
-  addToShoppingcart():void{
+  addToShoppingcart(): void {
     this.movie.amount = 1;
-    this.shoppingcartService.pushToCart(this.movie)
-   
+    this.movie.totalPerMovie = this.movie.price;
+    this.shoppingcartService.pushToCart(this.movie);
+
     this.service.getLs();
-  
   }
 }

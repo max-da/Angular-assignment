@@ -1,21 +1,19 @@
 <app-category></app-category>
 
-
-
-<div *ngFor="let m of movies">
-    <ul *ngFor="let cat of m.productCategory">
-     
-        <li *ngIf="cat.categoryId == id" [routerLink]="['/products', m.id]">
-          <div class="text-box">
-            <h2>{{m.name}}</h2><h3>{{m.price}}</h3>
-          </div>
-         
-              <img [src]="m.imageUrl"  [movie]="m" />
-        </li>
-      </ul>
-
-
-  </div>
-
-
-
+<div>
+  <ul class="products-list">
+    <li *ngFor="let m of moviesByCat">
+      <div class="cover">
+        <h2>{{ m.name }}</h2>
+        <h3>{{ m.price }} :-</h3>
+      </div>
+      <div class="image-border">
+        <img
+          [src]="m.imageUrl"
+          [movie]="m"
+          [routerLink]="['/products', m.id]"
+        />
+      </div>
+    </li>
+  </ul>
+</div>

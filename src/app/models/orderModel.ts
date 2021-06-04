@@ -9,10 +9,10 @@ export class Order{
     paymentMethod:string
     totalPrice:number
     status:number
-    orderRows:any
+    orderRows:orderRow[]
 
 
-    constructor( companyId:number, created:any, createdBy:string,paymentMethod:string,totalPrice:number,status:number,orderRows:any){ //{id:number,title:string}
+    constructor( companyId:number, created:any, createdBy:string,paymentMethod:string,totalPrice:number,status:number,orderRows:orderRow[]){ //{id:number,title:string}
     
         this.companyId = companyId,
         this.created = created,
@@ -25,4 +25,3 @@ export class Order{
     
     }
 }
-//}{"id":4327,"productId":77,"product":null,"amount":3,"orderId":3616},

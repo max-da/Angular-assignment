@@ -1,13 +1,29 @@
+<div>
+  <input
+    [(ngModel)]="searchText"
+    list="movies"
+    type="text"
+    #movieName
+    placeholder="Search for movie"
+  />
 
-<input [(ngModel)]="searchText" list="movies"   type="text" #movieName  placeholder="Search for movie">
+  <ul class="products-list">
+    <li
+      *ngFor="let m of movies | searchFilter: searchText"
+      [routerLink]="['/products', m.id]"
+    >
+      <div class="cover">
+        <h2>{{ m.name }}</h2>
+        <h3>{{ m.price }} :-</h3>
+      </div>
+      <div class="image-border">
+        <img
+          [src]="m.imageUrl"
+          [movie]="m"
+          [routerLink]="['/products', m.id]"
+        />
+      </div>
+    </li>
+  </ul>
+</div>
 
- <div >
-    <ul id=searchDiv>
-        <li *ngFor="let m of movies |searchFilter:searchText"  [routerLink]="['/products', m.id]" >
-            <h2>{{ m.name }}</h2>
-    <img [src]="m.imageUrl"  [movie]="m" />
-    <h3>{{ m.price }}</h3>
-   
-        </li>
-    </ul>
-</div> 
